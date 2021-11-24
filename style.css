@@ -94,8 +94,8 @@ body{
 }
 .wrapper .card.bingo{
     border: 5px solid #fff;
-    width: 300px;
-    height: 420px;
+    width: 320px;
+    height: 440px;
 }
 .wrapper .card .hoverMe{
     position: absolute;
