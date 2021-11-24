@@ -1,0 +1,248 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px;
+    background-color: #000;
+    overflow: hidden;
+}
+
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+}
+ #logo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+#logo img{
+    pointer-events: none;
+    width: 20vw;
+    min-width: 200px;
+}
+.fullscreen-bg__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.wrapper{
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    opacity: 0;
+    transition: .3s;
+}
+.wrapper.active{
+    opacity: 1;
+}
+.wrapper p{
+    text-align: center;
+    pointer-events: none;
+    font-size: 1.5rem;
+    font-family: sans-serif;
+    letter-spacing: 2px;
+    color: #fff;
+    padding-bottom: 50px;
+}
+.wrapper .card{
+    width: 280px;
+    height: 400px;
+    position: relative;
+    margin: 30px;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(3px);
+    transition: 1s;
+}
+.wrapper .card.active, .wrapper .card.bingo{
+    cursor: pointer;
+    transform: rotateY(180deg);
+    background-color: rgba(250, 250, 250, 0.8);
+}
+.wrapper .card.bingo{
+    border: 5px solid #fff;
+    width: 300px;
+    height: 420px;
+}
+.wrapper .card .hoverMe{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    outline: none;
+    border-width: 2px;
+    border-style: solid;
+    padding: 10px 12px;
+    border-radius: 15px;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: sans-serif;
+    opacity: 1;
+    transition: 1s;
+    pointer-events: none;
+}
+.wrapper .card:nth-child(1) .hoverMe{
+    border-color: rgb(255, 208, 0);
+}
+.wrapper .card:nth-child(2) .hoverMe{
+    border-color: rgb(241, 46, 79);
+}
+.wrapper .card:nth-child(3) .hoverMe{
+    border-color: rgb(8, 170, 245);
+}
+.wrapper .card:hover .hoverMe{
+    opacity: 0;
+    appearance: none;
+    transition: .3s;
+}
+.wrapper .card:hover{
+    cursor: pointer;
+    border-top: 1px solid rgba(74, 241, 233, 0.5);
+    border-left: 1px solid rgba(74, 241, 233, 0.5);
+}
+.wrapper .card .content{
+    padding-top: 20px;
+    text-align: center;
+    transform: translateY(100px);
+    transition: 1s;
+    opacity: 0;
+}
+.wrapper .card .afterClick{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0) rotateY(180deg);
+    text-align: center;
+    transition: 1s;
+    opacity: 0;
+    pointer-events: none;
+}
+.wrapper .card .afterClick img{
+    width: 100%;
+    object-fit: cover;
+}
+.wrapper .card .afterClick.active, .wrapper .card .afterClick.bingo{
+    transform: translate(-50%, -50%) scale(1) rotateY(180deg);
+    opacity: 1;
+}
+.wrapper .card .afterClick span{
+    color: rgb(20, 20, 20);
+    pointer-events: none;
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+.wrapper .card:hover .content{
+    transform: translateY(0px);
+    opacity: 1;
+}
+.wrapper .card .content.deActive, .wrapper .card .content.bingo{
+    transform: translateY(100px);
+    opacity: 0;
+}
+.wrapper .card .content img{
+    width: 100px;
+    animation:spin 4s linear infinite;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.ballons, .stars{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url("./media/balloons.png");
+    background-repeat: repeat;
+    background-size: 200px;
+    background-position: center;
+    pointer-events: none;
+    transition: 3s;
+    transform: translateY(100%);
+    opacity: 0;
+    display: none;
+}
+.stars{
+    background: url("./media/stars.png");
+    transition: 4s;
+}
+.ballons.active, .stars.active{
+    opacity: 1;
+    transform: translateY(-120%);
+}
+.thankyouMsg{
+    position: absolute;
+    bottom: 8%;
+    right: 5%;
+    opacity: 0;
+    display: none;
+    color: #fff;
+    font-size: 25px;
+    font-family: sans-serif;
+}
+.thankyouMsg span{
+    font-size: 28px;
+}
+.thankyouMsg.active{
+    opacity: 1;
+    display: inline;
+}
+
+@keyframes swing {
+    0%{left: 25%;}
+    50%{left: 75%;}
+    100%{left: 25%;}
+}
+@keyframes spin { 
+    100% { 
+        -webkit-transform: rotateY(360deg); 
+        transform:rotateY(360deg); 
+    } 
+}
+@keyframes stopSpin { 
+    100% { 
+        opacity: 1; 
+        -webkit-transform: rotateY(0deg); 
+        transform:rotateY(0deg);
+    } 
+}
+
