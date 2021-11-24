@@ -1,8 +1,8 @@
 let message = document.querySelectorAll(".afterClick span");
 let cards = document.querySelectorAll(".card");
 let wrapper = document.querySelector(".wrapper");
-var video = document.getElementById('video');
-var source = document.getElementById('source');
+var firstVideo = document.querySelector('.fullscreen-bg1');
+var SecondVideo = document.querySelector('.fullscreen-bg2');
 
 let celebration = () => {
     document.querySelector(".ballons").style.display = "block";
@@ -42,14 +42,13 @@ cards.forEach((element, index) => {
 
                 setTimeout(() => {
                     document.getElementById("logo").style.display = "block";
-                    source.setAttribute('src', "./media/Lines - 4760.mp4");
-                    video.load();
-                    video.play();
-                }, 6000);
+                    firstVideo.classList.remove("deActive");
+                    SecondVideo.classList.remove("active");    
+                }, 5000);
             
                 setTimeout(() => {
                     wrapper.classList.remove("active");
-                }, 5000);
+                }, 4000);
             }
             activeCard(element);
         })
@@ -63,19 +62,18 @@ cards.forEach((element) => {
     })
 });
 window.addEventListener("load", () => {
-   
+
     wrapper.style.display = "none";
 
     setTimeout(() => {
         document.getElementById("logo").style.display = "none";
-        source.setAttribute('src', "./media/Squares.mp4");
-        video.load();
-        video.play();
-    wrapper.style.display = "flex";
-    }, 8000);
+        firstVideo.classList.add("deActive");
+        SecondVideo.classList.add("active");
+        wrapper.style.display = "flex";
+    }, 6000);
 
     setTimeout(() => {
         wrapper.classList.add("active");
-    }, 10000);
+    }, 7000);
 })
 
