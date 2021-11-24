@@ -14,8 +14,7 @@ body{
     background-color: #000;
     overflow: hidden;
 }
-
-.fullscreen-bg {
+.fullscreen-bg1,  .fullscreen-bg2{
     position: fixed;
     top: 0;
     right: 0;
@@ -23,8 +22,27 @@ body{
     left: 0;
     overflow: hidden;
     z-index: -100;
+    opacity: 1;
+    transition: 1s;
 }
- #logo{
+.fullscreen-bg__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.fullscreen-bg1.deActive{
+    opacity: 0;
+}
+.fullscreen-bg2{
+    opacity: 0;
+}
+.fullscreen-bg2.active{
+    opacity: 1;
+}
+#logo{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -35,14 +53,6 @@ body{
     pointer-events: none;
     width: 20vw;
     min-width: 200px;
-}
-.fullscreen-bg__video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
 .wrapper{
     width: 100%;
@@ -94,8 +104,8 @@ body{
 }
 .wrapper .card.bingo{
     border: 5px solid #fff;
-    width: 320px;
-    height: 440px;
+    width: 300px;
+    height: 420px;
 }
 .wrapper .card .hoverMe{
     position: absolute;
@@ -196,14 +206,14 @@ body{
     background-size: 200px;
     background-position: center;
     pointer-events: none;
-    transition: 3s;
+    transition: 4s;
     transform: translateY(100%);
     opacity: 0;
     display: none;
 }
 .stars{
     background: url("./media/stars.png");
-    transition: 4s;
+    transition: 5s;
 }
 .ballons.active, .stars.active{
     opacity: 1;
@@ -218,6 +228,7 @@ body{
     color: #fff;
     font-size: 25px;
     font-family: sans-serif;
+    transition: .5s;
 }
 .thankyouMsg span{
     font-size: 28px;
